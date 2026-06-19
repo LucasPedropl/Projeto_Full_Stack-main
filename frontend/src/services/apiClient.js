@@ -1,4 +1,20 @@
-const API_BASE = '/api';
+function resolveApiBase() {
+	const configured = import.meta.env.VITE_API_BASE_URL?.trim();
+
+	if (!configured) {
+		return '/api';
+	}
+
+	let base = configured.replace(/\/+$/, '');
+
+	if (base.startsWith('http') && !base.endsWith('/api')) {
+		base = `${base}/api`;
+	}
+
+	return base;
+}
+
+const API_BASE = resolveApiBase();
 const TOKEN_KEY = 'gastometer_token';
 
 export function getStoredToken() {
