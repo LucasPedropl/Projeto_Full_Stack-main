@@ -1,0 +1,134 @@
+.card {
+  animation: fadeUp 0.4s ease both;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.cardHeader h2 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.loading {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  animation: pulse 1.5s infinite;
+}
+
+.empty {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 1rem 0;
+}
+
+.recentList,
+.budgetList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recentItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  transition: border-color var(--transition);
+}
+
+.recentItem:hover {
+  border-color: rgba(91, 91, 214, 0.2);
+}
+
+.emoji {
+  font-size: 1.25rem;
+}
+
+.recentInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.recentInfo strong {
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recentInfo span {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.recentValue {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.incomeValue {
+  color: var(--success);
+}
+
+.expenseValue {
+  color: var(--danger);
+}
+
+.budgetItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.budgetTop {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+}
+
+.overBudget {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.barTrack {
+  height: 6px;
+  background: var(--bg-input);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+.barOver {
+  background: var(--danger) !important;
+}
+
+@media (max-width: 480px) {
+  .recentItem {
+    flex-wrap: wrap;
+  }
+
+  .recentValue {
+    width: 100%;
+    text-align: right;
+    padding-top: 0.25rem;
+  }
+}

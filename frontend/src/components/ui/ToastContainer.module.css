@@ -1,0 +1,77 @@
+.container {
+  bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: fixed;
+  right: 24px;
+  z-index: 9999;
+  max-width: min(380px, calc(100vw - 32px));
+}
+
+.toast {
+  align-items: flex-start;
+  animation: slideIn 0.3s ease both;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  gap: 10px;
+  padding: 12px 14px;
+  box-shadow: var(--shadow-md);
+}
+
+.success {
+  background: rgba(20, 30, 24, 0.95);
+  border-color: rgba(87, 224, 160, 0.35);
+}
+
+.error {
+  background: rgba(30, 18, 18, 0.95);
+  border-color: rgba(224, 87, 87, 0.35);
+}
+
+.info {
+  background: rgba(18, 18, 30, 0.95);
+  border-color: rgba(91, 91, 214, 0.35);
+}
+
+.icon {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.success .icon { color: var(--success); }
+.error .icon { color: var(--danger); }
+.info .icon { color: var(--accent); }
+
+.message {
+  color: var(--text-primary);
+  flex: 1;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0;
+}
+
+.close:hover {
+  color: var(--text-primary);
+}
+
+@media (max-width: 600px) {
+  .container {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    max-width: none;
+  }
+}

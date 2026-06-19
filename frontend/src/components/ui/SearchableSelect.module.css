@@ -1,0 +1,238 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.trigger {
+  background: var(--bg-input);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  padding: 11px 14px;
+  text-align: left;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  width: 100%;
+}
+
+.trigger:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.trigger:focus-visible {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  outline: none;
+}
+
+.trigger:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.triggerError {
+  border-color: var(--danger) !important;
+}
+
+.placeholder {
+  color: var(--text-muted);
+}
+
+.value {
+  color: var(--text-primary);
+}
+
+.chevron {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  transition: transform var(--transition);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownPortal {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeUp 0.2s ease both;
+}
+
+.dropdown {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  left: 0;
+  margin-top: 6px;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 50;
+  overflow: hidden;
+  animation: fadeUp 0.2s ease both;
+}
+
+.search {
+  background: var(--bg-input);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  outline: none;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+.list {
+  list-style: none;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.option {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  padding: 10px 12px;
+  text-align: left;
+  transition: background var(--transition), color var(--transition);
+  width: 100%;
+}
+
+.option:hover {
+  background: rgba(91, 91, 214, 0.12);
+  color: var(--text-primary);
+}
+
+.optionActive {
+  background: rgba(91, 91, 214, 0.18);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.empty {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 14px 12px;
+  text-align: center;
+}
+
+.error {
+  color: var(--danger);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.error::before {
+  content: '⚠ ';
+}
+
+.createSection {
+  border-top: 1px solid var(--border);
+  padding: 0.5rem;
+  flex-shrink: 0;
+  background: var(--bg-surface);
+}
+
+.createBtn {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.createBtn:hover {
+  border-color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+.createForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.createInput {
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.createInput:focus {
+  border-color: var(--accent);
+}
+
+.createActions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.createCancel,
+.createConfirm {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.createCancel {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.createConfirm {
+  border: none;
+  background: var(--accent);
+  color: white;
+}
+
+.createConfirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.createError {
+  color: var(--danger);
+  font-size: 0.72rem;
+}

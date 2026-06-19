@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+.DS_Store
+
+frontend/node_modules/
+frontend/dist/
+
+backend/node_modules/
+backend/.env
+backend/logs/
+backend/certs/*.pem

@@ -1,0 +1,181 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --sidebar-width: 260px;
+  --sidebar-collapsed-width: 72px;
+  --sidebar-brand-height: 88px;
+  --topbar-height: 56px;
+  --mobile-nav-height: 64px;
+
+  --cat-food: #e05780;
+  --cat-transport: #57a0e0;
+  --cat-leisure: #a057e0;
+  --cat-health: #57e0a0;
+  --cat-housing: #e0b957;
+  --cat-education: #57d4e0;
+  --cat-other: #8888a0;
+
+  --inc-salary: #57e0a0;
+  --inc-freelance: #57a0e0;
+  --inc-investment: #a057e0;
+  --inc-gift: #e0b957;
+  --inc-rental: #57d4e0;
+  --inc-other: #8888a0;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --transition: 0.2s ease;
+}
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg-base: #f4f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-input: #eef0f6;
+  --bg-topbar: rgba(255, 255, 255, 0.92);
+  --bg-auth-card: rgba(255, 255, 255, 0.95);
+  --border: #dfe2ec;
+  --border-focus: #4f46e5;
+
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-glow: rgba(79, 70, 229, 0.18);
+  --accent-subtle: rgba(79, 70, 229, 0.08);
+
+  --text-primary: #12121a;
+  --text-secondary: #5c6070;
+  --text-muted: #9298a8;
+
+  --danger: #dc2626;
+  --danger-bg: rgba(220, 38, 38, 0.08);
+  --success: #059669;
+  --success-bg: rgba(5, 150, 105, 0.08);
+  --warning: #d97706;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-glow: 0 0 24px var(--accent-glow);
+
+  --body-gradient:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(79, 70, 229, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(5, 150, 105, 0.05) 0%, transparent 60%),
+    var(--bg-base);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-base: #0d0d0f;
+  --bg-surface: #141416;
+  --bg-card: #1a1a1e;
+  --bg-input: #111113;
+  --bg-topbar: rgba(20, 20, 22, 0.85);
+  --bg-auth-card: rgba(26, 26, 30, 0.85);
+  --border: #2a2a30;
+  --border-focus: #5b5bd6;
+
+  --accent: #5b5bd6;
+  --accent-hover: #6e6ee0;
+  --accent-glow: rgba(91, 91, 214, 0.25);
+  --accent-subtle: rgba(91, 91, 214, 0.12);
+
+  --text-primary: #f0f0f4;
+  --text-secondary: #8888a0;
+  --text-muted: #55556a;
+
+  --danger: #e05757;
+  --danger-bg: rgba(224, 87, 87, 0.12);
+  --success: #57e0a0;
+  --success-bg: rgba(87, 224, 160, 0.12);
+  --warning: #e0b957;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 30px var(--accent-glow);
+
+  --body-gradient:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(91, 91, 214, 0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(87, 224, 160, 0.06) 0%, transparent 60%),
+    var(--bg-base);
+}
+
+html {
+  font-family: var(--font-display);
+  background: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--body-gradient);
+  transition: background 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fadeUp { animation: fadeUp 0.4s ease both; }
+.animate-fadeIn { animation: fadeIn 0.3s ease both; }
+.animate-slideIn { animation: slideIn 0.3s ease both; }
