@@ -47,7 +47,7 @@ npm run dev:backend
 npm run dev:frontend
 ```
 
-Ou no VS Code/Cursor: **F5** → `Full Stack (Front + Back)`
+Ou no VSCode: **F5** → `Full Stack (Front + Back)`
 
 - Frontend: http://localhost:5173
 - Backend: http://localhost:3001

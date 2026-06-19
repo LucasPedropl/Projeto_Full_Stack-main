@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { connectDatabase, disconnectDatabase } from '../src/config/database.js'
 import pool from '../src/config/database.js'
 
 dotenv.config()
@@ -11,6 +12,8 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 async function seed() {
+  await connectDatabase()
+
   const schemaPath = path.join(__dirname, '../database/schema.sql')
   const schema = fs.readFileSync(schemaPath, 'utf-8')
 
@@ -57,7 +60,7 @@ async function seed() {
 
   console.info('[seed] Banco inicializado com sucesso.')
   console.info('[seed] Usuário: admin@gastometer.com | Senha: admin123')
-  await pool.end()
+  await disconnectDatabase()
 }
 
 seed().catch((error) => {

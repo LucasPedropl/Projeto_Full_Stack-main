@@ -5,7 +5,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import 'dotenv/config'
 import app from './src/config/app.js'
-import pool from './src/config/database.js'
+import { connectDatabase } from './src/config/database.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -38,9 +38,7 @@ function createServerInstance() {
 
 async function startServer() {
   try {
-    await pool.query('SELECT 1')
-    console.info('[database] Conexão com o banco estabelecida.')
-
+    await connectDatabase()
     const server = createServerInstance()
     const protocol = server instanceof https.Server ? 'https' : 'http'
 
