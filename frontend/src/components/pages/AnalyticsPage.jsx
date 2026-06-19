@@ -1,5 +1,5 @@
 import React from 'react'
-import Summary from '../Summary.jsx'
+import Summary from '../overview/Summary.jsx'
 import PageHeader from '../ui/PageHeader.jsx'
 import pageStyles from '../../styles/page.module.css'
 import styles from './AnalyticsPage.module.css'

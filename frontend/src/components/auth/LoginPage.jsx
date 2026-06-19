@@ -30,6 +30,8 @@ export default function LoginPage() {
   const [form, setForm] = useState(LOGIN_FORM)
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const isLogin = mode === 'login'
 
@@ -37,6 +39,8 @@ export default function LoginPage() {
     setMode(nextMode)
     setForm(nextMode === 'login' ? LOGIN_FORM : REGISTER_FORM)
     setErrors({})
+    setShowPassword(false)
+    setShowConfirmPassword(false)
   }
 
   const handleChange = (event) => {
@@ -82,7 +86,6 @@ export default function LoginPage() {
 
       <div className={styles.layout}>
         <section className={styles.hero}>
-          <span className={styles.badge}>SaaS · Finanças Pessoais</span>
           <h1 className={styles.title}>
             <span className={styles.logoIcon}>
               <NavIcon name="logo" size={36} />
@@ -92,12 +95,6 @@ export default function LoginPage() {
           <p className={styles.subtitle}>
             Plataforma completa para controlar gastos, orçamentos mensais, relatórios e conversão de moeda — tudo em um só lugar.
           </p>
-
-          <ul className={styles.features}>
-            <li>Painel com sidebar e métricas em tempo real</li>
-            <li>Orçamentos por categoria com alertas visuais</li>
-            <li>Cadastro e login seguros com JWT</li>
-          </ul>
         </section>
 
         <section className={styles.card}>
@@ -162,32 +159,54 @@ export default function LoginPage() {
 
             <div className={styles.group}>
               <label className={styles.label} htmlFor="password">Senha</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                className={`${styles.input} ${errors.password ? styles.inputError : ''}`}
-                placeholder="••••••••"
-                value={form.password || ''}
-                onChange={handleChange}
-                autoComplete={isLogin ? 'current-password' : 'new-password'}
-              />
+              <div className={styles.inputWrapper}>
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  className={`${styles.input} ${styles.inputWithToggle} ${errors.password ? styles.inputError : ''}`}
+                  placeholder="••••••••"
+                  value={form.password || ''}
+                  onChange={handleChange}
+                  autoComplete={isLogin ? 'current-password' : 'new-password'}
+                />
+                <button
+                  type="button"
+                  className={styles.passwordToggle}
+                  onClick={() => setShowPassword((current) => !current)}
+                  aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+                  aria-pressed={showPassword}
+                >
+                  <NavIcon name={showPassword ? 'eyeOff' : 'eye'} size={18} />
+                </button>
+              </div>
               {errors.password && <span className={styles.error}>{errors.password}</span>}
             </div>
 
             {!isLogin && (
               <div className={styles.group}>
                 <label className={styles.label} htmlFor="confirmPassword">Confirmar senha</label>
-                <input
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  className={`${styles.input} ${errors.confirmPassword ? styles.inputError : ''}`}
-                  placeholder="••••••••"
-                  value={form.confirmPassword || ''}
-                  onChange={handleChange}
-                  autoComplete="new-password"
-                />
+                <div className={styles.inputWrapper}>
+                  <input
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    className={`${styles.input} ${styles.inputWithToggle} ${errors.confirmPassword ? styles.inputError : ''}`}
+                    placeholder="••••••••"
+                    value={form.confirmPassword || ''}
+                    onChange={handleChange}
+                    autoComplete="new-password"
+                  />
+                  <button
+                    type="button"
+                    className={styles.passwordToggle}
+                    onClick={() => setShowConfirmPassword((current) => !current)}
+                    aria-label={showConfirmPassword ? 'Ocultar confirmação de senha' : 'Mostrar confirmação de senha'}
+                    aria-pressed={showConfirmPassword}
+                  >
+                    <NavIcon name={showConfirmPassword ? 'eyeOff' : 'eye'} size={18} />
+                  </button>
+                </div>
                 {errors.confirmPassword && (
                   <span className={styles.error}>{errors.confirmPassword}</span>
                 )}
@@ -200,14 +219,6 @@ export default function LoginPage() {
                 : (isLogin ? 'Entrar' : 'Criar conta')}
             </button>
           </form>
-
-          {isLogin && (
-            <div className={styles.demo}>
-              <span>Demo:</span>
-              <code>admin@gastometer.com</code>
-              <code>admin123</code>
-            </div>
-          )}
         </section>
       </div>
     </div>

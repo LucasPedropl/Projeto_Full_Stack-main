@@ -9,7 +9,6 @@ function getInitialTheme() {
     const stored = localStorage.getItem(THEME_KEY)
     if (stored === 'light' || stored === 'dark') return stored
   } catch {
-    /* ignore */
   }
 
   return 'light'
@@ -27,7 +26,6 @@ export function ThemeProvider({ children }) {
     try {
       localStorage.setItem(THEME_KEY, theme)
     } catch {
-      /* ignore */
     }
   }, [theme])
 

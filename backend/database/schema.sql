@@ -46,6 +46,5 @@ CREATE INDEX IF NOT EXISTS idx_incomes_category ON incomes(category);
 CREATE INDEX IF NOT EXISTS idx_incomes_date ON incomes(date);
 CREATE INDEX IF NOT EXISTS idx_budgets_user_id ON budgets(user_id);
 
--- Migração segura para bancos já existentes
 ALTER TABLE users ADD COLUMN IF NOT EXISTS name VARCHAR(100) NOT NULL DEFAULT 'Usuário';
 ALTER TABLE users ADD COLUMN IF NOT EXISTS plan VARCHAR(30) NOT NULL DEFAULT 'starter';

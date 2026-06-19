@@ -1,10 +1,11 @@
 import React, { useMemo, useState } from 'react'
 import * as Yup from 'yup'
-import { useExpenses } from '../contexts/ExpenseContext.jsx'
-import { CATEGORIES } from '../constants.js'
-import { useCustomCategories } from '../hooks/useCustomCategories.js'
-import SearchableSelect from './ui/SearchableSelect.jsx'
-import styles from './ExpenseForm.module.css'
+import { useIncomes } from '../../contexts/IncomeContext.jsx'
+import { INCOME_CATEGORIES } from '../../constants.js'
+import { useCustomCategories } from '../../hooks/useCustomCategories.js'
+import SearchableSelect from '../ui/SearchableSelect.jsx'
+import formStyles from './ExpenseForm.module.css'
+import styles from './IncomeForm.module.css'
 
 const EMPTY_FORM = {
   description: '',
@@ -13,15 +14,15 @@ const EMPTY_FORM = {
   date: new Date().toISOString().split('T')[0],
 }
 
-export default function ExpenseForm({ inModal = false, onSuccess }) {
-  const { addExpense, isSubmitting } = useExpenses()
-  const { customCategories, addCategory, categoryValues } = useCustomCategories('expense')
+export default function IncomeForm({ inModal = false, onSuccess }) {
+  const { addIncome, isSubmitting } = useIncomes()
+  const { customCategories, addCategory, categoryValues } = useCustomCategories('income')
   const [form, setForm] = useState(EMPTY_FORM)
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
 
   const categoryOptions = useMemo(() => [
-    ...CATEGORIES.map((cat) => ({
+    ...INCOME_CATEGORIES.map((cat) => ({
       value: cat.value,
       label: `${cat.emoji} ${cat.label}`,
     })),
@@ -32,7 +33,7 @@ export default function ExpenseForm({ inModal = false, onSuccess }) {
   ], [customCategories])
 
   const schema = useMemo(() => {
-    const allowed = [...CATEGORIES.map((cat) => cat.value), ...categoryValues]
+    const allowed = [...INCOME_CATEGORIES.map((cat) => cat.value), ...categoryValues]
 
     return Yup.object({
       description: Yup.string()
@@ -84,7 +85,7 @@ export default function ExpenseForm({ inModal = false, onSuccess }) {
 
     try {
       const validated = await schema.validate(form, { abortEarly: false })
-      await addExpense({
+      await addIncome({
         ...validated,
         value: Number(validated.value),
       })
@@ -102,17 +103,17 @@ export default function ExpenseForm({ inModal = false, onSuccess }) {
   }
 
   const fieldClass = (name) =>
-    `${styles.field} ${touched[name] && errors[name] ? styles.fieldError : ''} ${touched[name] && !errors[name] && form[name] ? styles.fieldValid : ''}`
+    `${formStyles.field} ${touched[name] && errors[name] ? formStyles.fieldError : ''} ${touched[name] && !errors[name] && form[name] ? formStyles.fieldValid : ''}`
 
   const formContent = (
-    <form onSubmit={handleSubmit} noValidate className={styles.form}>
-        <div className={styles.group}>
-          <label className={styles.label} htmlFor="description">Descrição</label>
+    <form onSubmit={handleSubmit} noValidate className={formStyles.form}>
+        <div className={formStyles.group}>
+          <label className={formStyles.label} htmlFor="income-description">Descrição</label>
           <input
-            id="description"
+            id="income-description"
             name="description"
             type="text"
-            placeholder="Ex: Almoço no restaurante"
+            placeholder="Ex: Salário mensal, projeto freelance..."
             className={fieldClass('description')}
             value={form.description}
             onChange={handleChange}
@@ -120,15 +121,15 @@ export default function ExpenseForm({ inModal = false, onSuccess }) {
             autoComplete="off"
           />
           {touched.description && errors.description && (
-            <span className={styles.error}>{errors.description}</span>
+            <span className={formStyles.error}>{errors.description}</span>
           )}
         </div>
 
-        <div className={styles.row}>
-          <div className={styles.group}>
-            <label className={styles.label} htmlFor="value">Valor (R$)</label>
+        <div className={formStyles.row}>
+          <div className={formStyles.group}>
+            <label className={formStyles.label} htmlFor="income-value">Valor (R$)</label>
             <input
-              id="value"
+              id="income-value"
               name="value"
               type="number"
               step="0.01"
@@ -140,11 +141,11 @@ export default function ExpenseForm({ inModal = false, onSuccess }) {
               onBlur={handleBlur}
             />
             {touched.value && errors.value && (
-              <span className={styles.error}>{errors.value}</span>
+              <span className={formStyles.error}>{errors.value}</span>
             )}
           </div>
 
-          <div className={styles.group}>
+          <div className={formStyles.group}>
             <SearchableSelect
               label="Categoria"
               value={form.category}
@@ -160,10 +161,10 @@ export default function ExpenseForm({ inModal = false, onSuccess }) {
           </div>
         </div>
 
-        <div className={styles.group}>
-          <label className={styles.label} htmlFor="date">Data</label>
+        <div className={formStyles.group}>
+          <label className={formStyles.label} htmlFor="income-date">Data</label>
           <input
-            id="date"
+            id="income-date"
             name="date"
             type="date"
             className={fieldClass('date')}
@@ -172,12 +173,12 @@ export default function ExpenseForm({ inModal = false, onSuccess }) {
             onBlur={handleBlur}
           />
           {touched.date && errors.date && (
-            <span className={styles.error}>{errors.date}</span>
+            <span className={formStyles.error}>{errors.date}</span>
           )}
         </div>
 
-        <button type="submit" className={styles.submit} disabled={isSubmitting}>
-          {isSubmitting ? 'Salvando...' : 'Adicionar Gasto'}
+        <button type="submit" className={`${formStyles.submit} ${styles.submit}`} disabled={isSubmitting}>
+          {isSubmitting ? 'Salvando...' : 'Adicionar Receita'}
         </button>
       </form>
   )
@@ -185,10 +186,10 @@ export default function ExpenseForm({ inModal = false, onSuccess }) {
   if (inModal) return formContent
 
   return (
-    <div className={styles.wrapper}>
-      <h2 className={styles.title}>
-        <span className={styles.titleIcon}>＋</span>
-        Novo Gasto
+    <div className={formStyles.wrapper}>
+      <h2 className={formStyles.title}>
+        <span className={`${formStyles.titleIcon} ${styles.titleIcon}`}>↑</span>
+        Nova Receita
       </h2>
       {formContent}
     </div>

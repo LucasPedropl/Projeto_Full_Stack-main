@@ -30,9 +30,6 @@ export function slugifyCategoryLabel(label) {
   return `custom_${base || 'nova'}`
 }
 
-/**
- * Gerencia categorias personalizadas por usuário (localStorage).
- */
 export function useCustomCategories(type) {
   const { user } = useAuth()
   const userId = user?.id

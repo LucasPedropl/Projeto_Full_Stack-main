@@ -4,10 +4,6 @@ import { useExpenses } from '../contexts/ExpenseContext.jsx'
 import { useIncomes } from '../contexts/IncomeContext.jsx'
 import { useNavigation } from '../contexts/NavigationContext.jsx'
 
-/**
- * Busca o resumo do dashboard e revalida ao entrar na visão geral
- * ou quando despesas/receitas são alteradas.
- */
 export function useDashboardSummary() {
   const { currentView } = useNavigation()
   const { dataVersion: expenseVersion } = useExpenses()

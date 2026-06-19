@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
 
-/**
- * Observa um media query e retorna se ela está ativa.
- */
 export function useMediaQuery(query) {
   const [matches, setMatches] = useState(() => {
     if (typeof window === 'undefined') return false

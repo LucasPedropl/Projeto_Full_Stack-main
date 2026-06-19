@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import styles from './Tooltip.module.css'
 
-/**
- * Tooltip lateral — visível apenas enquanto o mouse estiver sobre o elemento.
- */
 export default function Tooltip({ label, description, children, disabled = false }) {
   const [visible, setVisible] = useState(false)
 

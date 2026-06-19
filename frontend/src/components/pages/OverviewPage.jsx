@@ -3,7 +3,7 @@ import { useBudgets } from '../../hooks/useBudgets.js'
 import { useDashboardSummary } from '../../hooks/useDashboardSummary.js'
 import { formatBRL, getCategoryMeta, getIncomeCategoryMeta } from '../../constants.js'
 import PageHeader from '../ui/PageHeader.jsx'
-import StatsGrid from '../layout/StatsGrid.jsx'
+import StatsGrid from '../overview/StatsGrid.jsx'
 import pageStyles from '../../styles/page.module.css'
 import styles from './OverviewPage.module.css'
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import { useExpenses } from '../contexts/ExpenseContext.jsx'
-import { useCurrency } from '../hooks/useCurrency.js'
-import { CURRENCIES, getCategoryMeta } from '../constants.js'
-import SearchableSelect from './ui/SearchableSelect.jsx'
+import { useExpenses } from '../../contexts/ExpenseContext.jsx'
+import { useCurrency } from '../../hooks/useCurrency.js'
+import { CURRENCIES, getCategoryMeta } from '../../constants.js'
+import SearchableSelect from '../ui/SearchableSelect.jsx'
 import styles from './Summary.module.css'
 
 const formatBRL = (value) =>

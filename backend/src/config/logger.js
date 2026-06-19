@@ -13,9 +13,6 @@ function ensureLogDir() {
   }
 }
 
-/**
- * Registro persistente de eventos de segurança exigidos pela proposta do projeto.
- */
 export function logSecurityEvent(event, details = {}) {
   const entry = {
     timestamp: new Date().toISOString(),
